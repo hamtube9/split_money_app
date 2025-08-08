@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "vn.ngaoschos.split_money.split_money"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 29
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -28,7 +28,7 @@ android {
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        targetSdk = 29
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
