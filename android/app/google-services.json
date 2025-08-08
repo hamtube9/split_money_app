@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "218229368389",
+    "project_id": "split-money-cde30",
+    "storage_bucket": "split-money-cde30.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218229368389:android:23a8f2aa3e63a736b7a52c",
+        "android_client_info": {
+          "package_name": "vn.ngaoschos.split_money.split_money"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQ8hz02e3OKB0R6y6LAp2zrOLiuSOICMs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
