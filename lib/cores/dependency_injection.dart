@@ -1,5 +1,7 @@
 
 import 'package:get_it/get_it.dart';
+import 'package:split_money/blocs/auth_bloc/auth_bloc.dart';
+import 'package:split_money/blocs/home_bloc/home_bloc.dart';
 import 'package:split_money/utils/shared_preference.dart';
 
 final getIt = GetIt.instance;
@@ -14,34 +16,12 @@ void _initBloc() async {
   asyncInstance();
 
   // Init bloc
-  // getIt.registerLazySingleton<AuthenticationBloc>(
-  //   () => AuthenticationBloc(),
-  // );
-  //
-  // getIt.registerLazySingleton<DashboardBloc>(
-  //   () => DashboardBloc(),
-  // );
-  //
-  // getIt.registerLazySingleton<SearchBloc>(
-  //   () => SearchBloc(),
-  // );
-  //
-  // getIt.registerLazySingleton<ProfileBloc>(
-  //   () => ProfileBloc(),
-  // );
-  //
-  // getIt.registerLazySingleton<RestaurantBloc>(
-  //   () => RestaurantBloc(),
-  // );
-  // getIt.registerLazySingleton<ExploreBloc>(
-  //   () => ExploreBloc(),
-  // );
-  // getIt.registerLazySingleton<BLogBloc>(
-  //   () => BLogBloc(),
-  // );
-  // getIt.registerLazySingleton<LocalizationBloc>(
-  //       () => LocalizationBloc(),
-  // );
+  getIt.registerLazySingleton<AuthBloc>(
+    () => AuthBloc(),
+  );
+  getIt.registerLazySingleton<HomeBloc>(
+        () => HomeBloc(),
+  );
 }
 
 void asyncInstance() async {

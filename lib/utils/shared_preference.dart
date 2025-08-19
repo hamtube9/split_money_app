@@ -1,11 +1,13 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:split_money/models/user/user.dart';
 
 class SharedPrefKeys {
   SharedPrefKeys._();
 
   static const String token = 'token';
   static const String firstRun = 'first_run';
+  static const String user = 'user';
 }
 
 class SharedPreferencesService {
@@ -35,6 +37,11 @@ class SharedPreferencesService {
 
   // Get token
   Future<String?> get token => _secureStorage.read(key: SharedPrefKeys.token);
+
+  Future<void> setUser(User user) async =>
+      await _secureStorage.write(key: SharedPrefKeys.user, value: user.toRawJson());
+
+  Future<User?> get user async => User.fromRawJson( await _secureStorage.read(key: SharedPrefKeys.user) ?? "");
 
   Future<void> logOut() async {
     await Future.wait([_secureStorage.delete(key: SharedPrefKeys.token)]);

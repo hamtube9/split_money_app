@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:split_money/extension/context.dart';
 import 'package:split_money/main.dart';
 import 'package:split_money/route/app_path.dart';
@@ -22,9 +21,8 @@ class DioClient {
   static final Dio _dio = Dio();
 
   static final Dio _dioFormData = Dio();
-  static String baseUrl = "";
-  static String api = "";
-  static String fullApi = "";
+
+  static String fullApi = "http://10.0.2.2:8000/api";
 
   /// Init Dio client
   static Future<Dio> initService() async {
@@ -35,9 +33,7 @@ class DioClient {
     /// Get URL from .env
     // baseUrl = dotenv.get('BASE_URL');
     // api = dotenv.get('API_URL');
-    baseUrl = "";
-    api = "";
-    fullApi = "$baseUrl$api";
+
 
     _dio
       ..options.baseUrl = fullApi
@@ -95,7 +91,7 @@ class DioClient {
       var response = await _dio.get(fullApi + api);
       return _processResponse(response);
     } on DioException catch (e) {
-      _catchDioException(e);
+      _catchDioException(e, api);
     }
   }
 
@@ -105,7 +101,7 @@ class DioClient {
       var response = await _dio.delete(fullApi + api, data: payloads);
       return _processResponse(response);
     } on DioException catch (e) {
-      _catchDioException(e);
+      _catchDioException(e, api);
     }
   }
 
@@ -119,7 +115,7 @@ class DioClient {
       var response = await _dio.post(fullApi + api, data: payload);
       return _processResponse(response);
     } on DioException catch (e) {
-      _catchDioException(e);
+      _catchDioException(e, api);
     }
   }
 
@@ -131,7 +127,7 @@ class DioClient {
       var response = await dio.post(fullApi + api, data: payloadObj);
       return _processResponse(response);
     } on DioException catch (e) {
-      _catchDioException(e);
+      _catchDioException(e, api);
     }
   }
 
@@ -146,7 +142,7 @@ class DioClient {
           cancelToken: cancelToken);
       return _processResponse(response);
     } on DioException catch (e) {
-      _catchDioException(e);
+      _catchDioException(e, api);
     }
   }
 
@@ -190,7 +186,7 @@ class DioClient {
           .timeout(const Duration(seconds: timeOutDuration));
       return _processResponse(response);
     } on DioException catch (e) {
-      _catchDioException(e);
+      _catchDioException(e, api);
     }
   }
 
@@ -220,14 +216,14 @@ class DioClient {
     /// Show Error
     AlertPopup(
         title: 'Error',
-        msg: e.response?.data['error_message'],
+        msg: e.response?.data['message'],
         declinedText: 'Close',
         declinedAction: () async {
           context.pop();
         }).showAlertPopup(context);
   }
 
-  void _catchDioException(DioException e) {
+  void _catchDioException(DioException e, String api) {
     if (DioExceptionType.receiveTimeout == e.type) {
       throw ApiNotRespondingException('API not responded in time', api);
     } else if (DioExceptionType.sendTimeout == e.type) {

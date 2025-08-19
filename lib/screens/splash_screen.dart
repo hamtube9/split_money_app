@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:split_money/cores/dependency_injection.dart';
 import 'package:split_money/extension/context.dart';
 import 'package:split_money/route/app_path.dart';
+import 'package:split_money/utils/shared_preference.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,16 +20,20 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _navigateToLogin() async {
-    await Future.delayed(Duration(milliseconds: 1000));
-    if(mounted){
-      context.pushReplace(AppPaths.splash);
+    var token = await getIt.get<SharedPreferencesService>().token;
+    if (mounted) {
+      if (token == null || token.isEmpty) {
+        context.pushReplace(AppPaths.login);
+      } else {
+        context.pushReplace(AppPaths.home, extra: {"refreshToken": true});
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text("Welcome ",style: context.headerTextBlack(),),),
+      body: Center(child: Text("Welcome ", style: context.headerTextBlack())),
     );
   }
 }

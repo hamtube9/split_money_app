@@ -31,16 +31,25 @@ extension BuildContextEntension<T> on BuildContext {
   static const String BACKGROUND2 = "0xffEFF2F4";
 
   Color get background => const Color(0xffEFF5FE);
+
   Color get background2 => const Color(0xffEFF2F4);
+
   Color get redPrimary => const Color(0xffFB847C);
 
+  Color get darkBluePrimary => const Color(0xff011A51);
 
-  void pop({dynamic result}){
+  void pop({dynamic result}) {
     Navigator.of(this).pop(result);
   }
 
   Future<T?> push<T>(String path, {Map<String, dynamic>? extra}) {
     return Navigator.of(this).pushNamed(path, arguments: extra);
+  }
+
+  Future<T?> pushRemoveUntil<T>(String path, {Map<String, dynamic>? extra}) {
+    return Navigator.of(
+      this,
+    ).pushNamedAndRemoveUntil(path, (route) => false, arguments: extra);
   }
 
   Future<T?> pushReplace<T>(String path, {Map<String, dynamic>? extra}) {
@@ -51,70 +60,75 @@ extension BuildContextEntension<T> on BuildContext {
   //   return AppLocalizations.translate(key);
   // }
 
-  loadLocale(Locale locale){
-
-  }
-
   TextStyle headerTextBlack() {
     return const TextStyle(
-        fontFamily: 'TitilliumWeb',
-        fontSize: 20.0,
-        fontWeight: FontWeight.w600,
-        color: Color(0xff000000));
+      fontFamily: 'TitilliumWeb',
+      fontSize: 20.0,
+      fontWeight: FontWeight.w600,
+      color: Color(0xff011A51),
+    );
   }
 
   TextStyle headerTextWhite() {
     return const TextStyle(
-        fontFamily: 'TitilliumWeb',
-        fontSize: 20.0,
-        fontWeight: FontWeight.w600,
-        color: Color(0xffffffff));
+      fontFamily: 'TitilliumWeb',
+      fontSize: 20.0,
+      fontWeight: FontWeight.w600,
+      color: Color(0xffffffff),
+    );
   }
 
   TextStyle normalTextBlack() {
     return const TextStyle(
-        fontFamily: 'Poppins',
-        fontSize: 14.0,
-        fontWeight: FontWeight.w400,
-        color: Color(0xff000000));
+      fontFamily: 'Poppins',
+      fontSize: 14.0,
+      fontWeight: FontWeight.w400,
+      color: Color(0xff000000),
+    );
   }
+
   TextStyle normalTextWhite() {
     return const TextStyle(
-        fontFamily: 'Poppins',
-        fontSize: 14.0,
-        fontWeight: FontWeight.w400,
-        color: Color(0xffffffff));
+      fontFamily: 'Poppins',
+      fontSize: 14.0,
+      fontWeight: FontWeight.w400,
+      color: Color(0xffffffff),
+    );
   }
 
   TextStyle normalTextBold() {
     return const TextStyle(
-        fontSize: 14.0,
-        fontFamily: 'TitilliumWeb',
-        fontWeight: FontWeight.w700,
-        color: Color(0xff333333));
+      fontSize: 14.0,
+      fontFamily: 'TitilliumWeb',
+      fontWeight: FontWeight.w700,
+      color: Color(0xff333333),
+    );
   }
 
   TextStyle normalTextBoldWhite() {
     return const TextStyle(
-        fontSize: 14.0,
-        fontFamily: 'TitilliumWeb',
-        fontWeight: FontWeight.w700,
-        color: Color(0xffffffff));
+      fontSize: 14.0,
+      fontFamily: 'TitilliumWeb',
+      fontWeight: FontWeight.w700,
+      color: Color(0xffffffff),
+    );
   }
 
   TextStyle dateTextNormal() {
     return const TextStyle(
-        fontSize: 14.0,
-        // fontFamily: 'AvenirNextLTPro',
-        fontWeight: FontWeight.w400,
-        color: Color(0xff000000));
+      fontSize: 14.0,
+      // fontFamily: 'AvenirNextLTPro',
+      fontWeight: FontWeight.w400,
+      color: Color(0xff000000),
+    );
   }
 
   TextStyle dateTextMedium() {
     return const TextStyle(
-        fontSize: 14.0,
-        // fontFamily: 'AvenirNextLTPro',
-        fontWeight: FontWeight.w600,
-        color: Color(0xff000000));
+      fontSize: 14.0,
+      // fontFamily: 'AvenirNextLTPro',
+      fontWeight: FontWeight.w600,
+      color: Color(0xff000000),
+    );
   }
 }

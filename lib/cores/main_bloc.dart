@@ -1,16 +1,18 @@
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:split_money/blocs/auth_bloc/auth_bloc.dart';
+import 'package:split_money/blocs/home_bloc/home_bloc.dart';
 
 class MainBloc {
   static List<BlocProvider> allBlocs() => [
-    // BlocProvider<AuthenticationBloc>(
-    //   create: (context) => AuthenticationBloc(),
-    //   lazy: true,
-    // ),
-    // BlocProvider<DashboardBloc>(
-    //   create: (context) => DashboardBloc(),
-    //   lazy: true,
-    // ),
+    BlocProvider<AuthBloc>(
+      create: (context) => AuthBloc(),
+      lazy: true,
+    ),
+    BlocProvider<HomeBloc>(
+      create: (context) => HomeBloc(),
+      lazy: true,
+    ),
     // BlocProvider<SearchBloc>(
     //   create: (context) => SearchBloc(),
     //   lazy: true,
